@@ -1,0 +1,14 @@
+[ ] Use of templates
+[ ] Use of a database
+[ ] User registration
+[ ] - cookies and session
+[ ] - hashing passwords
+[ ] - JSON web token
+[ ] - Error handling
+
+Full CRUD (Applicaion specific)
+- catalog
+- details
+- create
+- edit
+- delete
