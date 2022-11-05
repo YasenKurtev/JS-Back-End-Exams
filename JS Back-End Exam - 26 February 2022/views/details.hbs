@@ -1,0 +1,55 @@
+<main>
+
+    <section id="details-page">
+        <article class="details-gage-title">
+            <h1>Details Page</h1>
+        </article>
+        <article class="details-page-card">
+
+            <article class="details-page-card-image">
+                <!-- Do not forget to change the path to the image -->
+                <img src="/static/img/man.png" alt="details-image">
+            </article>
+
+            <article class="details-page-card-content">
+                <p>Author: {{adOwner.email}}</p>
+                <h2>Headline: {{headline}}</h2>
+                <h3>Company name: {{companyName}}</h3>
+                <h4>Company description: {{companyDescription}}</h4>
+                <h5>Location: {{location}}</h5>
+
+                <article class="details-page-card-buttons">
+                    <!--only for registered users and author of the ad-->
+                    {{#if user}}
+                    {{#if isOwner}}
+                    <a href="/ads/{{_id}}/edit" class="btn-edit">Edit</a>
+                    <a href="/ads/{{_id}}/delete" class="btn-delete">Delete</a>
+                    <!--logged in user who did not apply for current ad-->
+                    {{else}}
+                    {{#if isApplied}}
+                    <!--logged in user who has already applied for current ad-->
+                    <p class="already-applied">You have already applied!</p>
+                    {{else}}
+                    <a href="/ads/{{_id}}/apply" class="btn-apply">Apply now!</a>
+                    <p class="applied-people">Hurry up, {{usersApplied.length}} people have already applied.</p>
+                    {{/if}}
+                    {{/if}}
+                    {{/if}}
+                </article>
+            </article>
+
+        </article>
+    </section>
+
+    {{#if isOwner}}
+    <!--This section should only be visible to the author of the current ad-->
+    <section id="info-about-candidates">
+        <h2>Candidates for this ad:</h2>
+        <!--If there are people who have applied, show each of them in the following format-->
+        {{#each appliedUsers}}
+        {{> users-applied}}
+        {{/each}}
+        <!--If not, you don't need to visualize anything further-->
+    </section>
+    {{/if}}
+</main>
